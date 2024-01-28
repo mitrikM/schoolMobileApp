@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">SchoolApp</string>
     <string name="click_me">Click me</string>
+    <string name="title">Recipe Title</string>
+    <string name="preparation_time_template">Preparation Time: %1$s mins</string>
+    <string name="side_dish_template">Side Dish: %1$s</string>
+    <string name="serving_count_template">Serving Count: %1$s</string>
+
 </resources>

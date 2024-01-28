@@ -1,12 +1,14 @@
 package com.example.schoolapp
 
 import RecipesViewModelFactory
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.schoolapp.activities.RecipeDetailActivity
 import com.example.schoolapp.adapters.RecipesAdapter
 import com.example.schoolapp.repositories.RecipesRepository
 import com.example.schoolapp.viewmodel.RecipesViewModel
@@ -22,11 +24,14 @@ class MainActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this, viewModelFactory)[RecipesViewModel::class.java]
 
         val rvRecipes = findViewById<RecyclerView>(R.id.rvRecipes)
-        val adapter = RecipesAdapter()
+        val adapter = RecipesAdapter { recipe ->
+            val intent = Intent(this, RecipeDetailActivity::class.java)
+            intent.putExtra("RECIPE_SLUG", recipe.slug)
+            startActivity(intent)
+        }
         rvRecipes.adapter = adapter
         rvRecipes.layoutManager = LinearLayoutManager(this)
         viewModel.recipes.observe(this) { recipes ->
-            Log.d("nigger", "Recipes list is empty")
 
             // Update the adapter's data
             if (recipes != null) {
