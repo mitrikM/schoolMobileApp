@@ -55,10 +55,13 @@ class RecipesAdapter(private val clickListener: (String) -> Unit) : RecyclerView
     private fun addToHistory(context: Context, recipeTitle: String) {
         val sharedPref = context.getSharedPreferences("RecipeHistory", Context.MODE_PRIVATE) ?: return
         with(sharedPref.edit()) {
-            val historySet = sharedPref.getStringSet("HISTORY", mutableSetOf()) ?: mutableSetOf()
+            val historySet = sharedPref.getStringSet("HISTORY", mutableSetOf())?.toMutableSet() ?: mutableSetOf()
+
             historySet.add(recipeTitle)
-            putStringSet("HISTORY", historySet)
+
+            putStringSet("HISTORY", historySet.toSet())
             apply()
         }
     }
+
 }
