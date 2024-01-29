@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.schoolapp.R
 import com.example.schoolapp.model.RecipesModel
 
-class RecipesAdapter(private val clickListener: (RecipesModel) -> Unit) : RecyclerView.Adapter<RecipesAdapter.RecipeViewHolder>() {
+class RecipesAdapter(private val clickListener: (String) -> Unit) : RecyclerView.Adapter<RecipesAdapter.RecipeViewHolder>() {
 
     private var recipes: List<RecipesModel> = listOf()
 
@@ -27,8 +27,8 @@ class RecipesAdapter(private val clickListener: (RecipesModel) -> Unit) : Recycl
         val recipe = recipes[position]
         holder.tvTitle.text = recipe.title
         holder.tvPreparationTime.text = "Preparation time: ${recipe.preparationTime.toString()} minutes"
-        holder.itemView.setOnClickListener{
-            clickListener(recipe)
+        holder.itemView.setOnClickListener {
+            clickListener(recipe.slug)
         }
     }
 
