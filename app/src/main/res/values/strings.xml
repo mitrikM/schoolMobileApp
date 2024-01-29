@@ -5,5 +5,6 @@
     <string name="preparation_time_template">Preparation Time: %1$s mins</string>
     <string name="side_dish_template">Side Dish: %1$s</string>
     <string name="serving_count_template">Serving Count: %1$s</string>
+    <string name="hello_blank_fragment">kys</string>
 
 </resources>
